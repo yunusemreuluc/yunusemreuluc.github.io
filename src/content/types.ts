@@ -26,6 +26,15 @@ export type Season = {
 
 export type UI = {
   langLabel: string;
+  seriesTag: string;
+  channel: string;
+  pressPlay: string;
+  skipIntro: string;
+  introLabel: string;
+  openEpisode: (title: string) => string;
+  closeEpisode: string;
+  scrollHint: string;
+  replayIntro: string;
   switchTo: string;
   onAir: string;
   skip: string;

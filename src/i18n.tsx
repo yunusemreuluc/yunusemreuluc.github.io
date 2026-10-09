@@ -60,3 +60,15 @@ export function LangSwitch() {
 export const code = (season: number, episode: number) => `S${String(season + 1).padStart(2, '0')}E${String(episode + 1).padStart(2, '0')}`;
 
 export const asset = (file: string) => `${import.meta.env.BASE_URL}${file}`;
+
+/** English words and brand names that keep a plain capital I in Turkish uppercase. */
+const KEEP_LATIN = new Set(['ai', 'airon', 'fractureai', 'junior', 'engineer', 'linkedin', 'github', 'cisco', 'python', 'mcp', 'ccna']);
+
+/** Uppercase for display: Turkish rules (i → İ) except for English words and brand names. */
+export function upper(text: string, lang: Lang) {
+  if (lang !== 'tr') return text.toUpperCase();
+  return text
+    .split(/(\s+)/)
+    .map((w) => (KEEP_LATIN.has(w.replace(/[^\p{L}]/gu, '').toLowerCase()) ? w.toUpperCase() : w.toLocaleUpperCase('tr')))
+    .join('');
+}
