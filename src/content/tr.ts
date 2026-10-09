@@ -1,0 +1,232 @@
+/**
+ * Türkçe içerik — en.ts ile aynı özgeçmişten, aynı sırayla. Bağlantılar ve kimlikler en.ts ile aynı kalmalı.
+ */
+import type { Content } from './types';
+import en from './en';
+
+const [projects, experience, skills, education, certs] = en.seasons;
+const link = (sid: number, eid: string) => en.seasons[sid].episodes.find((e) => e.id === eid)!.link;
+
+const tr: Content = {
+  ...en,
+  location: 'Konya, Türkiye',
+  pilot: [
+    'Yazılım Mühendisliği mezunu (2026) bir Junior AI Engineer’ım; hem fakülte hem bölüm birincisiyim. Python ile pratik yapay zekâ uygulamaları geliştiriyorum: LLM tabanlı araçlar, API entegrasyonları ve iş akışı otomasyonu. Veriyi hazırlıyor ve temizliyor, yapay zekâ çıktılarını doğruluk ve güvenilirlik açısından test ediyor, bulduklarımı belgeliyorum.',
+    'Yapay zekâ kodlama asistanlarını (Claude Code, Codex CLI) her gün kullanıyorum; ürettikleri her şeyi yayına almadan önce okuyor, test ediyor ve hatalarını ayıklıyorum.',
+  ],
+  highlights: [
+    { value: '%91,54', label: 'FractureAI doğruluğu' },
+    { value: '33', label: 'Airon’da function calling aracı' },
+    { value: '42', label: 'MCP sunucusunda pytest testi' },
+    { value: '#1', label: 'fakülte ve bölümde' },
+  ],
+  seasons: [
+    {
+      id: projects.id,
+      title: 'Yapay Zekâ Projeleri',
+      logline: 'LLM araçları, otomasyon ve iki araştırma projesi — kodu, testleri ve dokümantasyonuyla GitHub’da.',
+      episodes: [
+        {
+          id: 'airon',
+          title: 'Airon',
+          tagline: 'LLM Tabanlı Masaüstü Asistanı ve MCP Sunucusu · Tek Geliştirici',
+          date: '2026',
+          summary: '33 function calling aracıyla çalışan, Claude Code’a bağlı kendi MCP sunucusu olan bir masaüstü asistanı.',
+          points: [
+            'Gemini Live API üzerinde function calling ile 33 araç sunan bir LLM uygulaması geliştirdim: araç şemaları, yönlendirme, hata yönetimi ve çok adımlı görev yürütme.',
+            'Resmi Python SDK ile 4 araçlı bir MCP (Model Context Protocol) sunucusu ekledim; gerçek bir MCP istemcisi üzerinden çalışan 42 pytest testiyle doğruladım, MCP Inspector’da test edip Claude Code’a bağladım.',
+            'Sunucuyu güvenilirlik ve güvenlik açısından inceledim, 8 bulgunun 7’sini düzelttim (girdi doğrulama, kişisel veri maskeleme, kaynak sınırları, daha açık hata mesajları).',
+            'Yapay zekâ özelliklerini çalışan bir ürüne entegre ettim: FastAPI + WebSocket backend, Next.js frontend, cihaz üzerinde nesne tespiti (YOLO-World) ve OCR, riskli işlemler için iki adımlı kullanıcı onayı.',
+          ],
+          metrics: [
+            { value: '33', label: 'araç' },
+            { value: '4', label: 'MCP aracı' },
+            { value: '42', label: 'test' },
+            { value: '7/8', label: 'bulgu düzeltildi' },
+          ],
+          tags: ['Python', 'FastAPI', 'WebSocket', 'Gemini Live API', 'Next.js'],
+          link: link(0, 'airon'),
+        },
+        {
+          id: 'automation',
+          title: 'İş Akışı Otomasyonu',
+          tagline: 'Dijital Ürün Hattı ve YouTube Shorts Yükleyicisi · Tek Geliştirici',
+          date: '2026',
+          summary: 'Tek komuta indirilmiş bir ürün iş akışı ve takvimle yayın yapan bir yükleyici.',
+          points: [
+            'Görsel üretimi, mockup, ilan metni ve PDF teslimatından oluşan iş akışını tek bir komuta indirdim; bununla 39 ürün seti üretildi.',
+            'Üretilen kısa videoları YouTube Data API üzerinden günlük takvimle yayınlayan, OAuth kimlik bilgilerini ve zamanlanmış yayını yöneten bir yükleyici yazdım.',
+          ],
+          metrics: [
+            { value: '1', label: 'komut' },
+            { value: '39', label: 'ürün seti' },
+            { value: 'Günlük', label: 'yayın' },
+          ],
+          tags: ['Python', 'Pillow', 'ReportLab', 'YouTube Data API v3', 'OAuth'],
+        },
+        {
+          id: 'fracture-ai',
+          title: 'FractureAI',
+          tagline: 'TÜBİTAK 2209-A Destekli Yapay Zekâ Araştırma Projesi · Proje Yürütücüsü',
+          date: '2025 – 2026',
+          summary: 'Klinik röntgen görüntülerinde kırık ve çıkık tespiti — ham veriden açıklamalı bir web uygulamasına.',
+          points: [
+            'Dört açık veri setinden ~67.000 röntgen görüntüsünü hazırlayıp temizledim; hasta düzeyinde bölme veri sızıntısını önledi, etiket gürültüsü Confident Learning ile ele alındı.',
+            '%91,54 doğruluğa (Cohen κ 0,831, AUC 0,960) ulaşan bir model topluluğu eğitip değerlendirdim ve Grad-CAM açıklamalı bir FastAPI web uygulaması olarak yayına aldım.',
+          ],
+          metrics: [
+            { value: '%91,54', label: 'doğruluk' },
+            { value: '0,960', label: 'AUC' },
+            { value: '0,831', label: 'Cohen κ' },
+            { value: '~67 bin', label: 'röntgen görüntüsü' },
+          ],
+          tags: ['PyTorch', 'FastAPI', 'Grad-CAM'],
+          link: link(0, 'fracture-ai'),
+        },
+        {
+          id: 'dengue',
+          title: 'Dang Humması Tespiti',
+          tagline: 'Veri Analizi ve Model Karşılaştırması · Araştırmacı',
+          date: '2026',
+          summary: 'Klinik kayıtlar üzerinde karşılaştırılan dokuz makine öğrenmesi algoritması — yayın için değerlendirmede.',
+          points: ['19 parametreli 1.523 kaydı analiz ettim ve dokuz makine öğrenmesi algoritmasını Stratified K-Fold çapraz doğrulama ile karşılaştırdım.'],
+          metrics: [
+            { value: '1.523', label: 'kayıt' },
+            { value: '19', label: 'parametre' },
+            { value: '9', label: 'algoritma' },
+          ],
+          tags: ['scikit-learn', 'XGBoost', 'Pandas'],
+        },
+      ],
+    },
+    {
+      id: experience.id,
+      title: 'Deneyim',
+      logline: 'Opak Yazılım, Konya’da Yazılım Mühendisliği Stajyeri — mobil ve çapraz platform geliştirme.',
+      episodes: [
+        {
+          id: 'niceo-neo',
+          title: 'NICEO & NEO',
+          tagline: 'Yazılım Mühendisliği Stajyeri · Opak Yazılım, Konya',
+          date: '2025',
+          summary: 'Staj sırasında geliştirilip teslim edilen mobil e-ticaret uygulamaları.',
+          points: ['Flutter/Dart ve React Native/TypeScript ile ürün kataloğu, sepet ve ödeme akışlarını kapsayan mobil e-ticaret uygulamaları NICEO & NEO’yu geliştirip teslim ettim.'],
+          tags: ['Flutter', 'Dart', 'React Native', 'TypeScript'],
+        },
+        {
+          id: 'architecture',
+          title: 'Mimari',
+          tagline: 'Yazılım Mühendisliği Stajyeri · Opak Yazılım, Konya',
+          date: '2025',
+          summary: 'Uygulamaların arkasındaki REST API katmanı — yazılmadan önce modellendi, sonra şirkete sunuldu.',
+          points: ['UML ile modellenmiş katmanlı mimaride, açık durum yönetimiyle REST API entegrasyonunu kurdum; tamamlanan uygulamaları şirkete sundum.'],
+          tags: ['REST API', 'UML', 'Durum yönetimi'],
+        },
+      ],
+    },
+    {
+      id: skills.id,
+      title: 'Yetenekler',
+      logline: 'Her bölümün arkasındaki oyuncu kadrosu ve ekip.',
+      episodes: [
+        { id: 'programming', title: 'Programlama', tagline: 'Diller', summary: 'Python, TypeScript, JavaScript, SQL, Kotlin, C++, C#', tags: skills.episodes[0].tags },
+        {
+          id: 'ai-llms',
+          title: 'Yapay Zekâ ve LLM',
+          tagline: 'Dil modelleriyle geliştirme',
+          summary: 'Büyük dil modelleri (LLM), Gemini API, function calling, MCP (Model Context Protocol), prompt mühendisliği, yapay zekâ çıktılarının test ve değerlendirmesi',
+          tags: ['LLM', 'Gemini API', 'Function calling', 'MCP', 'Prompt mühendisliği', 'AI çıktı testi'],
+        },
+        {
+          id: 'ml',
+          title: 'Makine Öğrenmesi',
+          tagline: 'Model ve veri',
+          summary: 'PyTorch, scikit-learn, XGBoost, OpenCV, ONNX Runtime, veri temizleme ve hazırlama, Pandas, NumPy',
+          tags: skills.episodes[2].tags,
+        },
+        { id: 'apis', title: 'API ve Otomasyon', tagline: 'Sistemleri birbirine bağlamak', summary: 'REST API, FastAPI, WebSocket, API entegrasyonu, iş akışı otomasyonu, OAuth', tags: skills.episodes[3].tags },
+        { id: 'tools', title: 'Araçlar', tagline: 'Yayına alma ve test', summary: 'Git ve GitHub, pytest, Docker, Linux, Claude Code, Codex CLI, Jupyter, VS Code', tags: skills.episodes[4].tags },
+      ],
+    },
+    {
+      id: education.id,
+      title: 'Eğitim',
+      logline: 'Yazılım Mühendisliği Lisans — Muş Alparslan Üniversitesi.',
+      episodes: [
+        {
+          id: 'degree',
+          title: 'Yazılım Mühendisliği Lisans',
+          tagline: 'Muş Alparslan Üniversitesi',
+          date: '2022 – 2026',
+          summary: 'Fakülte ve bölüm birincisi — en yüksek ortalamayla mezun.',
+          metrics: [{ value: '#1', label: 'fakülte ve bölüm' }],
+        },
+        {
+          id: 'thesis',
+          title: 'Tez',
+          tagline: 'Muş Alparslan Üniversitesi',
+          date: '2026',
+          summary: '“Klinik Röntgen Görüntülerinde Kırık ve Çıkık Tespiti İçin Derin Öğrenme Tabanlı Bir Yapay Zekâ Sistemi”.',
+          tags: ['Derin öğrenme', 'Tıbbi görüntüleme'],
+        },
+      ],
+    },
+    {
+      id: certs.id,
+      title: 'Sertifikalar ve Diller',
+      logline: 'Sezon finali.',
+      episodes: [
+        { id: 'ccna', title: 'CCNA: Introduction to Networks', tagline: 'Cisco Networking Academy', date: 'Ocak 2025', summary: 'Cisco Networking Academy sertifikalı ağ temelleri.' },
+        {
+          id: 'languages',
+          title: 'Diller',
+          tagline: 'Türkçe · İngilizce',
+          summary: 'Türkçe — ana dil. İngilizce — B1; teknik dokümantasyon ve akademik literatürle çalışıyorum.',
+          tags: ['Türkçe — Ana dil', 'İngilizce — B1'],
+        },
+      ],
+    },
+  ],
+  spoken: ['Türkçe — Ana dil', 'İngilizce — B1'],
+  ui: {
+    langLabel: 'TR',
+    switchTo: 'Dil',
+    onAir: 'Yayında',
+    skip: 'Bölüm rehberine geç',
+    pilot: 'Pilot',
+    playAll: 'Tüm bölümleri oynat',
+    play: 'Oynat',
+    downloadCv: 'CV’yi indir',
+    contact: 'İletişime geç',
+    season: 'Sezon',
+    episode: 'Bölüm',
+    episodes: (n) => `${n} bölüm`,
+    guideTitle: 'Bölüm rehberi',
+    guideIntro: 'Beş sezon, CV’deki sırayla. Bir sezon seç, bir bölüm aç.',
+    seasonsLabel: 'Sezonlar',
+    details: 'Ayrıntılar',
+    hideDetails: 'Ayrıntıları gizle',
+    upNext: 'Sıradaki',
+    nextIn: (s) => `${s} sn içinde`,
+    finale: 'Dizi şimdilik burada bitiyor.',
+    theEnd: 'Son',
+    pause: 'Duraklat',
+    resume: 'Devam et',
+    previous: 'Önceki bölüm',
+    next: 'Sonraki bölüm',
+    close: 'Kapat',
+    playerLabel: 'Tüm bölümler oynatılıyor',
+    progressLabel: 'Dizi ilerlemesi',
+    creditsTitle: 'Jenerik',
+    starring: 'Başrolde',
+    builtWith: 'Ana teknolojiler',
+    basedIn: 'Konum',
+    languages: 'Diller',
+    email: 'E-posta',
+    replay: 'Pilot bölüme dön',
+    licenseNote: 'Kod MIT Lisansı ile açıktır. CV, fotoğraf ve metinler © Yunus Emre Uluç, tüm hakları saklıdır.',
+    pdfNote: 'PDF İngilizcedir.',
+  },
+};
+
+export default tr;
