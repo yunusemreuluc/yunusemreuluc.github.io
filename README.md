@@ -34,4 +34,4 @@ To use this for your own resume, replace those two files, `public/yunus.jpg`, `p
 
 ## License
 
-Code: [MIT](LICENSE). The resume, photos and texts in `src/content/` are © Yunus Emre Uluç, all rights reserved.
+Code: [MIT](LICENSE). The resume, photos and texts in `src/content/` are © Yunus Emre Uluç, all rights reserved — see [CONTENT-NOTICE.md](CONTENT-NOTICE.md).
