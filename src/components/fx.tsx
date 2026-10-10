@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react';
 import { animate, motion, useInView, useReducedMotion } from 'framer-motion';
 import type { Metric } from '../content/types';
+import { EPISODE_IMAGES } from '../content/images';
+import { asset } from '../i18n';
 
 export const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -114,9 +116,13 @@ export const GRADES = [
   { a: '#7fb6ff', b: '#13305c', c: '#050a14' },
 ];
 
-/** Generated key art for an episode: graded gradient, light leak, scanlines and a huge episode number. */
-export function PosterArt({ season, episode }: { season: number; episode: number }) {
+/**
+ * Key art for an episode: the episode's image (photo-style fill, or a framed screenshot/icon),
+ * over a season-graded gradient with a light leak, scanlines and a huge episode number.
+ */
+export function PosterArt({ season, episode, id }: { season: number; episode: number; id?: string }) {
   const g = GRADES[season % GRADES.length];
+  const img = id ? EPISODE_IMAGES[id] : undefined;
   return (
     <div
       className="poster-art"
@@ -125,6 +131,17 @@ export function PosterArt({ season, episode }: { season: number; episode: number
       }}
       aria-hidden
     >
+      {img && (
+        <img
+          className={`poster-img${img.fit === 'contain' ? ' poster-img-framed' : ''}${img.dim ? ' poster-img-dim' : ''}`}
+          src={asset(img.src)}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+          style={img.fit === 'contain' ? { boxShadow: `0 0 80px ${g.a}33` } : undefined}
+        />
+      )}
       <span className="poster-leak" style={{ background: `linear-gradient(100deg, transparent 30%, ${g.a}55, transparent 70%)` }} />
       <span className="poster-num" style={{ WebkitTextStroke: `1px ${g.a}66` }}>
         {String(episode + 1).padStart(2, '0')}

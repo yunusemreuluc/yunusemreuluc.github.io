@@ -1,6 +1,7 @@
 import { useId, useRef, type KeyboardEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { Cursor } from '../App';
+import { useRailScroll } from '../hooks/useRailScroll';
 import { code, useLang } from '../i18n';
 import { EASE, PosterArt, Reveal, SplitTitle } from './fx';
 
@@ -8,11 +9,20 @@ import { EASE, PosterArt, Reveal, SplitTitle } from './fx';
 export default function Seasons({ season, onSeason, onOpen }: { season: number; onSeason: (i: number) => void; onOpen: (c: Cursor) => void }) {
   const { t } = useLang();
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
-  const rail = useRef<HTMLDivElement>(null);
+  const rail = useRef<HTMLDivElement | null>(null);
+  const railScroll = useRailScroll();
+  const tabsScroll = useRailScroll();
+  const panel = useRef<HTMLDivElement>(null);
+  const railRef = (el: HTMLDivElement | null) => {
+    rail.current = el;
+    railScroll(el);
+  };
   const base = useId();
   const current = t.seasons[season];
 
   const pick = (i: number) => {
+    // Hold the panel's height while the old season animates out, so the page doesn't jump.
+    if (i !== season && panel.current) panel.current.style.minHeight = `${panel.current.offsetHeight}px`;
     onSeason(i);
     rail.current?.scrollTo({ left: 0, behavior: 'smooth' });
   };
@@ -35,7 +45,7 @@ export default function Seasons({ season, onSeason, onOpen }: { season: number; 
         <SplitTitle text={t.ui.guideTitle} className="section-title" />
       </Reveal>
 
-      <div className="tabs" role="tablist" aria-label={t.ui.seasonsLabel} onKeyDown={onKey}>
+      <div ref={tabsScroll} className="tabs" role="tablist" aria-label={t.ui.seasonsLabel} onKeyDown={onKey}>
         {t.seasons.map((s, i) => (
           <button
             key={s.id}
@@ -57,7 +67,7 @@ export default function Seasons({ season, onSeason, onOpen }: { season: number; 
         ))}
       </div>
 
-      <div id={`${base}-panel`} role="tabpanel" aria-labelledby={`${base}-tab-${season}`}>
+      <div ref={panel} id={`${base}-panel`} role="tabpanel" aria-labelledby={`${base}-tab-${season}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={`${current.id}-${t.ui.langLabel}`}
@@ -65,6 +75,12 @@ export default function Seasons({ season, onSeason, onOpen }: { season: number; 
             animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
             exit={{ opacity: 0, x: -60, filter: 'blur(10px)' }}
             transition={{ duration: 0.55, ease: EASE }}
+            // Release the height lock once the new season has fully entered (also covers interrupted switches).
+            onAnimationComplete={(def) => {
+              // Fires for the exit too; only the enter animation ends at full opacity.
+              if ((def as { opacity?: number }).opacity !== 1 || !panel.current) return;
+              panel.current.style.minHeight = '';
+            }}
           >
             <div className="season-head">
               <h3 className="season-title">
@@ -74,7 +90,7 @@ export default function Seasons({ season, onSeason, onOpen }: { season: number; 
               <p className="season-logline">{current.logline}</p>
             </div>
 
-            <div ref={rail} className="rail">
+            <div ref={railRef} className="rail">
               {current.episodes.map((ep, i) => (
                 <motion.button
                   key={ep.id}
@@ -88,7 +104,7 @@ export default function Seasons({ season, onSeason, onOpen }: { season: number; 
                   whileHover={{ y: -10 }}
                 >
                   <motion.div layoutId={`art-${season}-${ep.id}`} className="poster-frame">
-                    <PosterArt season={season} episode={i} />
+                    <PosterArt season={season} episode={i} id={ep.id} />
                   </motion.div>
                   <span className="poster-code mono">{code(season, i)}</span>
                   <span className="poster-play" aria-hidden>

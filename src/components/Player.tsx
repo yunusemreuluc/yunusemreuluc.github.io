@@ -99,7 +99,7 @@ export default function Player({ start, onClose }: { start: Cursor; onClose: (la
             transition={{ duration: 1.2, ease: EASE }}
             aria-hidden
           >
-            <PosterArt season={item.si} episode={item.ei} />
+            <PosterArt season={item.si} episode={item.ei} id={item.ep.id} />
           </motion.div>
         )}
       </AnimatePresence>

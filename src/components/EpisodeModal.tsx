@@ -31,7 +31,7 @@ export default function EpisodeModal({ at, onClose, onMove, onPlay }: { at: Curs
       <motion.article className="modal-card" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, y: 30, transition: { duration: 0.25 } }}>
         <div className="modal-hero">
           <motion.div layoutId={`art-${origin.season}-${origin.id}`} className="modal-art" transition={{ duration: 0.6, ease: EASE }}>
-            <PosterArt season={at.season} episode={at.episode} />
+            <PosterArt season={at.season} episode={at.episode} id={ep.id} />
           </motion.div>
           <button ref={closeBtn} type="button" className="icon-btn modal-close" onClick={onClose} aria-label={t.ui.closeEpisode}>
             ✕
