@@ -8,7 +8,7 @@ season and every entry is an episode — in the resume's own order, in Turkish a
 | Season | Resume section |
 | --- | --- |
 | Pilot | Summary |
-| 1 | AI Projects — Airon, Workflow Automation, FractureAI, Dengue Fever Detection |
+| 1 | AI Projects — Chiron, Dilcep, Workflow Automation, FractureAI, Dengue Fever Detection |
 | 2 | Experience — Opak Yazılım |
 | 3 | Skills |
 | 4 | Education |

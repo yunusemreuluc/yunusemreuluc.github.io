@@ -1,5 +1,5 @@
 /**
- * English content. Every fact comes from the resume (public/Yunus_Emre_Uluc_CV.pdf),
+ * English content. Facts come from the resume (public/Yunus_Emre_Uluc_CV.pdf) and the project repos,
  * and the seasons follow the resume's section order.
  */
 import type { Content } from './types';
@@ -20,7 +20,7 @@ const en: Content = {
   ],
   highlights: [
     { value: '91.54%', label: 'FractureAI accuracy' },
-    { value: '33', label: 'function-calling tools in Airon' },
+    { value: '36', label: 'function-calling tools in Chiron' },
     { value: '42', label: 'pytest tests on the MCP server' },
     { value: '#1', label: 'in faculty & department' },
   ],
@@ -28,28 +28,47 @@ const en: Content = {
     {
       id: 'projects',
       title: 'AI Projects',
-      logline: 'LLM tools, automation and two research projects — on GitHub with code, tests and documentation.',
+      logline: 'LLM tools, a mobile app, automation and two research projects — on GitHub with code, tests and documentation.',
       episodes: [
         {
-          id: 'airon',
-          title: 'Airon',
+          id: 'chiron',
+          title: 'Chiron',
           tagline: 'LLM-Powered Desktop Assistant & MCP Server · Sole Developer',
           date: '2026',
-          summary: 'A desktop assistant that runs on 33 function-calling tools, with its own MCP server connected to Claude Code.',
+          summary: 'A desktop assistant that runs on 36 function-calling tools, with its own MCP server connected to Claude Code.',
           points: [
-            'Built an LLM application with 33 tools exposed through function calling on the Gemini Live API: tool schemas, routing, error handling and multi-step task execution.',
+            'Built an LLM application with 36 tools exposed through function calling on the Gemini Live API: tool schemas, routing, error handling and multi-step task execution.',
             'Added an MCP (Model Context Protocol) server with 4 tools using the official Python SDK, covered by 42 pytest tests run through a real MCP client; verified in MCP Inspector and connected to Claude Code.',
             'Reviewed the server for reliability and safety and fixed 7 of 8 findings (input validation, personal-data masking, resource limits, clearer error messages).',
             'Integrated AI features into a working product: FastAPI + WebSocket backend, Next.js frontend, on-device object detection (YOLO-World) and OCR, and a two-step user-approval layer for risky actions.',
           ],
           metrics: [
-            { value: '33', label: 'tools' },
+            { value: '36', label: 'tools' },
             { value: '4', label: 'MCP tools' },
             { value: '42', label: 'tests' },
             { value: '7/8', label: 'findings fixed' },
           ],
           tags: ['Python', 'FastAPI', 'WebSocket', 'Gemini Live API', 'Next.js'],
-          link: { label: 'github.com/yunusemreuluc/Airon', href: `${gh}/Airon` },
+          link: { label: 'github.com/yunusemreuluc/Chiron', href: `${gh}/Chiron` },
+        },
+        {
+          id: 'dilcep',
+          title: 'Dilcep',
+          tagline: 'Offline-First Translation & Language-Learning App for Android · Sole Developer',
+          date: '2026',
+          summary: 'A translator that keeps working without internet — text, voice, camera and two-way conversation — plus English lessons from A1 to B1.',
+          points: [
+            'Built an Android app with Expo and React Native that translates text, speech and camera images on the device, so it keeps working in airplane mode.',
+            'Wrote three native Kotlin modules for on-device translation, speech recognition and OCR (ML Kit), and a split-screen conversation mode that reads each side aloud in the other person’s language.',
+            'Wrote 191 English lessons in 32 units (A1–B1) and a 4,368-word vocabulary path, with FSRS spaced repetition for review.',
+            'Stored everything locally in SQLite (Drizzle ORM), with optional Supabase accounts (email code, Google) and cloud sync.',
+          ],
+          metrics: [
+            { value: '191', label: 'lessons' },
+            { value: '4,368', label: 'words' },
+            { value: '3', label: 'native modules' },
+          ],
+          tags: ['React Native', 'Expo', 'TypeScript', 'Kotlin', 'ML Kit', 'SQLite', 'Supabase'],
         },
         {
           id: 'automation',

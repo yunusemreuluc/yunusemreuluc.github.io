@@ -62,7 +62,7 @@ export const code = (season: number, episode: number) => `S${String(season + 1).
 export const asset = (file: string) => `${import.meta.env.BASE_URL}${file}`;
 
 /** English words and brand names that keep a plain capital I in Turkish uppercase. */
-const KEEP_LATIN = new Set(['ai', 'airon', 'fractureai', 'junior', 'engineer', 'linkedin', 'github', 'cisco', 'python', 'mcp', 'ccna']);
+const KEEP_LATIN = new Set(['ai', 'chiron', 'fractureai', 'junior', 'engineer', 'linkedin', 'github', 'cisco', 'python', 'mcp', 'ccna']);
 
 /** Uppercase for display: Turkish rules (i → İ) except for English words and brand names. */
 export function upper(text: string, lang: Lang) {

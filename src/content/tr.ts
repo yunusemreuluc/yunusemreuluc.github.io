@@ -16,7 +16,7 @@ const tr: Content = {
   ],
   highlights: [
     { value: '%91,54', label: 'FractureAI doğruluğu' },
-    { value: '33', label: 'Airon’da function calling aracı' },
+    { value: '36', label: 'Chiron’da function calling aracı' },
     { value: '42', label: 'MCP sunucusunda pytest testi' },
     { value: '#1', label: 'fakülte ve bölümde' },
   ],
@@ -24,28 +24,47 @@ const tr: Content = {
     {
       id: projects.id,
       title: 'Yapay Zekâ Projeleri',
-      logline: 'LLM araçları, otomasyon ve iki araştırma projesi — kodu, testleri ve dokümantasyonuyla GitHub’da.',
+      logline: 'LLM araçları, bir mobil uygulama, otomasyon ve iki araştırma projesi — kodu, testleri ve dokümantasyonuyla GitHub’da.',
       episodes: [
         {
-          id: 'airon',
-          title: 'Airon',
+          id: 'chiron',
+          title: 'Chiron',
           tagline: 'LLM Tabanlı Masaüstü Asistanı ve MCP Sunucusu · Tek Geliştirici',
           date: '2026',
-          summary: '33 function calling aracıyla çalışan, Claude Code’a bağlı kendi MCP sunucusu olan bir masaüstü asistanı.',
+          summary: '36 function calling aracıyla çalışan, Claude Code’a bağlı kendi MCP sunucusu olan bir masaüstü asistanı.',
           points: [
-            'Gemini Live API üzerinde function calling ile 33 araç sunan bir LLM uygulaması geliştirdim: araç şemaları, yönlendirme, hata yönetimi ve çok adımlı görev yürütme.',
+            'Gemini Live API üzerinde function calling ile 36 araç sunan bir LLM uygulaması geliştirdim: araç şemaları, yönlendirme, hata yönetimi ve çok adımlı görev yürütme.',
             'Resmi Python SDK ile 4 araçlı bir MCP (Model Context Protocol) sunucusu ekledim; gerçek bir MCP istemcisi üzerinden çalışan 42 pytest testiyle doğruladım, MCP Inspector’da test edip Claude Code’a bağladım.',
             'Sunucuyu güvenilirlik ve güvenlik açısından inceledim, 8 bulgunun 7’sini düzelttim (girdi doğrulama, kişisel veri maskeleme, kaynak sınırları, daha açık hata mesajları).',
             'Yapay zekâ özelliklerini çalışan bir ürüne entegre ettim: FastAPI + WebSocket backend, Next.js frontend, cihaz üzerinde nesne tespiti (YOLO-World) ve OCR, riskli işlemler için iki adımlı kullanıcı onayı.',
           ],
           metrics: [
-            { value: '33', label: 'araç' },
+            { value: '36', label: 'araç' },
             { value: '4', label: 'MCP aracı' },
             { value: '42', label: 'test' },
             { value: '7/8', label: 'bulgu düzeltildi' },
           ],
           tags: ['Python', 'FastAPI', 'WebSocket', 'Gemini Live API', 'Next.js'],
-          link: link(0, 'airon'),
+          link: link(0, 'chiron'),
+        },
+        {
+          id: 'dilcep',
+          title: 'Dilcep',
+          tagline: 'İnternetsiz Çalışan Çeviri ve Dil Öğrenme Uygulaması (Android) · Tek Geliştirici',
+          date: '2026',
+          summary: 'İnternet olmadan da çalışan bir çevirmen — yazı, ses, kamera ve karşılıklı konuşma — ve A1’den B1’e İngilizce dersleri.',
+          points: [
+            'Expo ve React Native ile yazıyı, konuşmayı ve kamera görüntüsünü cihazın kendisinde çeviren, uçak modunda da çalışan bir Android uygulaması geliştirdim.',
+            'Cihaz üzerinde çeviri, ses tanıma ve OCR (ML Kit) için üç yerel Kotlin modülü ve her tarafın söylediğini karşının dilinde sesli okuyan bölünmüş ekran konuşma modu yazdım.',
+            '32 ünitede 191 İngilizce ders (A1–B1) ve 4.368 kelimelik bir kelime yolu yazdım; tekrarlar FSRS aralıklı tekrar algoritmasıyla planlanıyor.',
+            'Her şeyi SQLite’ta (Drizzle ORM) yerel tuttum; isteğe bağlı Supabase hesabı (e-posta kodu, Google) ve bulut senkronu ekledim.',
+          ],
+          metrics: [
+            { value: '191', label: 'ders' },
+            { value: '4.368', label: 'kelime' },
+            { value: '3', label: 'yerel modül' },
+          ],
+          tags: ['React Native', 'Expo', 'TypeScript', 'Kotlin', 'ML Kit', 'SQLite', 'Supabase'],
         },
         {
           id: 'automation',

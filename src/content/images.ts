@@ -8,7 +8,7 @@ export type EpisodeImage = { src: string; fit?: 'cover' | 'contain'; real?: bool
 
 export const EPISODE_IMAGES: Record<string, EpisodeImage> = {
   // Season 1 — AI Projects
-  airon: { src: 'episodes/airon-icon.png', fit: 'contain', real: true }, // the app's own icon
+  chiron: { src: 'episodes/chiron-icon.png', fit: 'contain', real: true }, // the app's own icon
   automation: { src: 'episodes/workflow.webp', real: true, dim: true }, // graphics produced by the pipeline (light background, dimmed)
   'fracture-ai': { src: 'episodes/fracture-roc.webp', fit: 'contain', real: true }, // ROC curves from the repo
   dengue: { src: 'episodes/dengue.webp' },
